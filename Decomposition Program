@@ -1,0 +1,62 @@
+import java.util.Scanner;
+public class Decomposition {
+    public static void main(String[] args) {
+        int numberOne = getFirstNumberfromUser();
+        int numberTwo = getSecondNumberfromUser();
+        String operator = getOperatorfromUser();
+        int result = compute(numberOne, numberTwo, operator);
+        output(result);
+    } 
+
+    private static int getInputfromUser(String prompt) {
+        Scanner input = new Scanner(System.in); 
+        while(true) {
+            System.out.println(prompt);
+            String first = input.next();
+            if(first.equals("/q")) {
+                System.out.print("I'm here.");
+                System.exit(0);
+            }
+            try {
+                return Integer.parseInt(first);
+            }catch(Exception e) {
+                System.out.println("Please enter a valid number");
+            }
+        }
+    }
+    private static String getStringfromUser(String prompt) {
+        Scanner input = new Scanner(System.in);
+        while(true) {
+            System.out.println(prompt);
+            String first = input.next();
+            if(first.equals("/q")) {
+                System.exit(0);
+            }
+            if(first.equals("+") || first.equals("*")) {
+                return first;
+            }
+            System.out.println("Please enter a valid operator");
+
+        }
+    }
+    private static String getOperatorfromUser() {
+        return getStringfromUser("Enter operator: ( + or * )");
+    }
+    private static int getFirstNumberfromUser() {
+        return  getInputfromUser("Enter the First Number: ");
+    }
+    private static int getSecondNumberfromUser() {
+        return getInputfromUser("Enter the Second Number: "); 
+    } 
+    private static int compute(int numberOne, int numberTwo, String operator) {
+        if(operator.equals("+"))
+            return numberOne + numberTwo;
+        else if(operator.equals("*"))
+            return numberOne * numberTwo;
+        else
+            return 0;
+    }
+    private static void output(int result) {
+        System.out.println("Resutl: " + result);
+    }  
+}
